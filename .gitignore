@@ -1,0 +1,4 @@
+Elgg
+.vagrant
+*.log
+nbproject/

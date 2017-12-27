@@ -1,0 +1,10 @@
+- name: Setup Elgg Development Environment
+  hosts: all
+  sudo: true
+
+  roles:
+    - common
+    - apache
+    - php
+    - mysql
+    - elgg
