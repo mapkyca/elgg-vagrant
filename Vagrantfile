@@ -4,17 +4,15 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/xenial64"
+
+  config.vm.boot_timeout = 600
 
   config.vm.hostname = "elgg"
   config.vm.network :private_network, ip: "192.168.33.34"
 
-  config.vm.synced_folder "./Elgg", "/home/vagrant/Elgg"
+  config.vm.synced_folder ".", "/home/vagrant/"
 
-  # Ansible provisioner.
-  config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "ansible/develop.yml"
-    ansible.sudo = true
-  end
+  config.vm.provision :shell, path: "provisioning/provision.sh"
 
 end
